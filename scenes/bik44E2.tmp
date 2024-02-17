@@ -1,0 +1,192 @@
+[gd_scene load_steps=4 format=3 uid="uid://vp148srndi7g"]
+
+[ext_resource type="Script" path="res://scripts/bike.gd" id="1_ead6k"]
+[ext_resource type="ArrayMesh" uid="uid://cmqlocxmmukja" path="res://assets/Tracer/Tracer-0-Tracer.obj" id="1_wivye"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_u5nl0"]
+height = 3.77662
+radius = 0.557905
+
+[node name="Bike" type="VehicleBody3D"]
+mass = 150.0
+gravity_scale = 2.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(-1.08266, -0.447807, 0)
+inertia = Vector3(1000, 0, 525)
+script = ExtResource("1_ead6k")
+
+[node name="Tracer-0-tracer" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.9782, 0, 0)
+mesh = ExtResource("1_wivye")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -0.862091, 0.0392552, 0)
+shape = SubResource("CylinderShape3D_u5nl0")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+top_level = true
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(-4.33244e-08, 0.132775, -0.991146, 5.8038e-09, 0.991146, 0.132775, 1, -4.44089e-16, -4.37114e-08, -2.24617, 1.10217, 0)
+current = true
+fov = 102.3
+
+[node name="FrontRight" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.20173, 1)
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+suspension_stiffness = 60.0
+
+[node name="Middle" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.202, 0)
+use_as_traction = true
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+suspension_stiffness = 60.0
+
+[node name="FrontLeft" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.20173, -1)
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+suspension_stiffness = 60.0
+
+[node name="StabilizationWheelLeft" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-2.18557e-08, 3.78552e-08, 1, 0.866025, 0.5, 0, -0.5, 0.866025, -4.37114e-08, 0.948004, -0.0538858, -1.34795)
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+suspension_stiffness = 200.0
+
+[node name="StabilizationWheelRight" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-2.18557e-08, -3.78552e-08, 1, -0.866025, 0.5, 0, -0.5, -0.866025, -4.37114e-08, 0.948004, -0.054, 1.348)
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+suspension_stiffness = 200.0
+
+[node name="StabilizationWheelLeft2" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-2.18557e-08, 3.78552e-08, 1, 0.866025, 0.5, 0, -0.5, 0.866025, -4.37114e-08, -3.28886, -0.0538858, -1.34795)
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+suspension_stiffness = 200.0
+
+[node name="StabilizationWheelRight2" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-2.18557e-08, -3.78552e-08, 1, -0.866025, 0.5, 0, -0.5, -0.866025, -4.37114e-08, -3.28886, -0.054, 1.348)
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+suspension_stiffness = 200.0
+
+[node name="StabilizationWheelLeft3" type="VehicleWheel3D" parent="."]
+transform = Transform3D(3.58063e-08, 2.50718e-08, 1, 0.573576, -0.819152, 0, 0.819152, 0.573576, -4.37114e-08, 0.948004, 1.1762, -0.846525)
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+suspension_stiffness = 200.0
+
+[node name="StabilizationWheelLeft4" type="VehicleWheel3D" parent="."]
+transform = Transform3D(3.58063e-08, 2.50718e-08, 1, 0.573576, -0.819152, 0, 0.819152, 0.573576, -4.37114e-08, -3.28886, 1.1762, -0.846525)
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+suspension_stiffness = 200.0
+
+[node name="StabilizationWheelLeft5" type="VehicleWheel3D" parent="."]
+transform = Transform3D(3.58063e-08, -2.50718e-08, 1, -0.573576, -0.819152, 1.45511e-15, 0.819152, -0.573576, -4.37114e-08, 0.948004, 1.1762, 0.847)
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+suspension_stiffness = 200.0
+
+[node name="StabilizationWheelLeft6" type="VehicleWheel3D" parent="."]
+transform = Transform3D(3.58063e-08, -2.50718e-08, 1, -0.573576, -0.819152, 1.45511e-15, 0.819152, -0.573576, -4.37114e-08, -3.28886, 1.1762, 0.847)
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+suspension_stiffness = 200.0
+
+[node name="RearRight" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.39952, -1.20173, 1)
+use_as_steering = true
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+suspension_stiffness = 60.0
+
+[node name="RearLeft" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.39952, -1.20173, -1)
+use_as_steering = true
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+suspension_stiffness = 60.0
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="SpotLight" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(-4.37114e-08, 0.173648, -0.984808, 0, 0.984808, 0.173648, 1, 7.59039e-09, -4.30473e-08, 0.997065, 0.152203, 0)
+light_color = Color(0.960784, 0.788235, 0.415686, 1)
+light_energy = 8.0
+light_indirect_energy = 0.0
+shadow_enabled = true
+spot_range = 150.0
+spot_attenuation = 0.258818
+spot_angle = 30.0
+spot_angle_attenuation = 2.37842
+
+[node name="HeadLight" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98041, 0.100532, 0)
+light_color = Color(0.792157, 0.517647, 0.0980392, 1)
+light_energy = 6.0
+omni_range = 0.44
+omni_attenuation = 1.86607
+
+[node name="UnderLight_1" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07433, -0.62138, 0)
+light_color = Color(0.286275, 0.65098, 0.909804, 1)
+light_energy = 2.317
+omni_range = 0.5
+omni_attenuation = 0.594603
+
+[node name="UnderLight_5" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4283, -0.719966, 0)
+light_color = Color(0.286275, 0.65098, 0.909804, 1)
+light_energy = 2.317
+omni_range = 0.5
+omni_attenuation = 0.594603
+
+[node name="UnderLight_4" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.259035, -0.62138, 0)
+light_color = Color(0.286275, 0.65098, 0.909804, 1)
+light_energy = 2.317
+omni_range = 0.5
+omni_attenuation = 0.594603
+
+[node name="UnderLight_6" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.627041, -0.62138, 0)
+light_color = Color(0.286275, 0.65098, 0.909804, 1)
+light_energy = 2.317
+omni_range = 0.5
+omni_attenuation = 0.594603
+
+[node name="UnderLight_2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85209, -0.62138, 0)
+light_color = Color(0.286275, 0.65098, 0.909804, 1)
+light_energy = 2.317
+omni_range = 0.5
+omni_attenuation = 0.594603
+
+[node name="UnderLight_3" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30327, -0.684367, 0)
+light_color = Color(0.286275, 0.65098, 0.909804, 1)
+light_energy = 2.317
+omni_range = 0.5
+omni_attenuation = 0.594603
+
+[node name="BackLight" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83258, -0.0661604, 0)
+light_color = Color(0.8, 0.219608, 0.129412, 1)
+light_energy = 2.317
+omni_range = 0.616
+omni_attenuation = 1.68179
+
+[node name="CockpitLight" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.53876, 0.503666, 0)
+light_color = Color(0.831373, 0.364706, 0.341176, 1)
+light_energy = 2.317
+omni_range = 0.808038
+omni_attenuation = 1.07178
+
+[node name="CenterOfMass" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08266, -0.447807, 0)

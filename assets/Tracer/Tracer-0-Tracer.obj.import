@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cmqlocxmmukja"
+path="res://.godot/imported/Tracer-0-Tracer.obj-14004500acf5607b000b95c7e647a239.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Tracer-0-Tracer.obj-14004500acf5607b000b95c7e647a239.mesh"]
+
+source_file="res://assets/Tracer/Tracer-0-Tracer.obj"
+dest_files=["res://.godot/imported/Tracer-0-Tracer.obj-14004500acf5607b000b95c7e647a239.mesh", "res://.godot/imported/Tracer-0-Tracer.obj-14004500acf5607b000b95c7e647a239.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

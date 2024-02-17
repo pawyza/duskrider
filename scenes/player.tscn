@@ -1,0 +1,251 @@
+[gd_scene load_steps=11 format=3 uid="uid://0asvbd3v6q5s"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_sjdfh"]
+[ext_resource type="Shader" path="res://shaders/retro.gdshader" id="2_gbw5m"]
+[ext_resource type="AudioStream" uid="uid://dpacah4mr47q" path="res://audio/DeathSound.wav" id="3_ed13m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yk7jt"]
+height = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pxuic"]
+render_priority = 0
+shader = ExtResource("2_gbw5m")
+
+[sub_resource type="QuadMesh" id="QuadMesh_47lor"]
+material = SubResource("ShaderMaterial_pxuic")
+
+[sub_resource type="Animation" id="Animation_qs6kc"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathCanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:volume_change")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, -30]
+}
+
+[sub_resource type="Animation" id="Animation_dsdfb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathCanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_eoy63"]
+resource_name = "win"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathCanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:volume_change")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, -30]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hyq1k"]
+_data = {
+"RESET": SubResource("Animation_dsdfb"),
+"death": SubResource("Animation_qs6kc"),
+"win": SubResource("Animation_eoy63")
+}
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 5
+collision_mask = 3
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_sjdfh")
+volume_change = -30
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_yk7jt")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06108, 0)
+
+[node name="SunRayCast" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, 100)
+
+[node name="InteractRayCast" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, -4)
+collision_mask = 2
+debug_shape_thickness = 5
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+current = true
+fov = 102.274
+near = 0.1
+far = 10000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06888, -0.109489)
+visible = false
+mesh = SubResource("QuadMesh_47lor")
+skeleton = NodePath("../..")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Head/Camera3D"]
+current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="GetOn" type="RichTextLabel" parent="CanvasLayer/MarginContainer"]
+visible = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 9
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]PRESS E TO GET ON[/center]
+"
+
+[node name="PickUp" type="RichTextLabel" parent="CanvasLayer/MarginContainer"]
+visible = false
+clip_contents = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 9
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]PRESS E TO PICK UP[/center]
+"
+
+[node name="GetOnBike" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="StepPlayers" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StepPlayers"]
+volume_db = 2.0
+bus = &"Ambient"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="StepPlayers"]
+volume_db = 2.0
+bus = &"Ambient"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="StepPlayers"]
+volume_db = 2.0
+bus = &"Ambient"
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="StepPlayers"]
+volume_db = 2.0
+bus = &"Ambient"
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="StepPlayers"]
+volume_db = 2.0
+bus = &"Ambient"
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="StepPlayers"]
+volume_db = 2.0
+bus = &"Ambient"
+
+[node name="StepTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hyq1k")
+}
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ed13m")
+volume_db = 10.0
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="DeathCanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="DeathCanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[connection signal="timeout" from="GetOnBike" to="." method="_on_get_on_bike_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

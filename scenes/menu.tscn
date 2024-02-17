@@ -1,0 +1,132 @@
+[gd_scene load_steps=5 format=3 uid="uid://brv7umxxrhknm"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_gbp3q"]
+[ext_resource type="AudioStream" uid="uid://l7pj5e6hvmq7" path="res://audio/DayAmbient.wav" id="2_bvrid"]
+[ext_resource type="AudioStream" uid="uid://bwutt4vymoj1" path="res://audio/DayStart_Music.wav" id="2_ldxoi"]
+
+[sub_resource type="Theme" id="Theme_f8rfl"]
+
+[node name="Menu" type="Control"]
+texture_filter = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gbp3q")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.596078, 0.443137, 0.34902, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 110
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 100
+
+[node name="MainMenu" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainMenu"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainMenu/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/MainMenu/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "[center][b]Dusk Rider[/b]
+Hoverbike Odyssey under Moonlight[/center]
+"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/MainMenu"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PlayButton" type="Button" parent="MarginContainer/MainMenu/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+text = "PLAY"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/MainMenu"]
+custom_minimum_size = Vector2(100, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainMenu/HBoxContainer4"]
+layout_mode = 2
+
+[node name="VolumeText" type="RichTextLabel" parent="MarginContainer/MainMenu/HBoxContainer4/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[center]Volume[/center]"
+
+[node name="SpinBox" type="HSlider" parent="MarginContainer/MainMenu/HBoxContainer4/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = SubResource("Theme_f8rfl")
+value = 50.0
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/MainMenu"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainMenu/HBoxContainer5"]
+layout_mode = 2
+
+[node name="ControlsText" type="RichTextLabel" parent="MarginContainer/MainMenu/HBoxContainer5/VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 9
+bbcode_enabled = true
+text = "[center][b]Controls[/b][/center]
+
+[center]WASD                            Movement[/center]
+[center]E                         Bike interactions[/center]
+[center]SPACE                         Bike breaks[/center]
+[center]ESC       Back to menu/Exit game[/center]"
+
+[node name="DayStartMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ldxoi")
+autoplay = true
+bus = &"Music"
+
+[node name="DustAmbient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_bvrid")
+autoplay = true
+bus = &"Ambient"
+
+[connection signal="pressed" from="MarginContainer/MainMenu/HBoxContainer3/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="value_changed" from="MarginContainer/MainMenu/HBoxContainer4/VBoxContainer/SpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="finished" from="DayStartMusic" to="." method="_on_day_start_music_finished"]
+[connection signal="finished" from="DustAmbient" to="." method="_on_dust_ambient_finished"]

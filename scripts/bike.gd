@@ -13,6 +13,15 @@ var camera_origin
 var has_started = false
 var is_on_ground = false
 
+@export var BIKE_HIT_LIST : Array[Resource] = [
+	preload("res://audio/PodRacerHit_-001.wav"),
+	preload("res://audio/PodRacerHit_-002.wav"),
+	preload("res://audio/PodRacerHit_-003.wav"),
+	preload("res://audio/PodRacerHit_-004.wav"),
+	preload("res://audio/PodRacerHit_-005.wav"),
+]
+
+
 func _ready():
 	player = get_parent().get_node("Player")
 	camera_origin = $CameraPivot/Camera3D.transform
@@ -114,3 +123,16 @@ func pick_up():
 	global_rotation.x = 0
 	global_rotation.z = 0
 	is_on_ground = false
+
+func play_hit():
+	for audioStreamPlayer in $HitAudioPlayers.get_children():
+		if not audioStreamPlayer.playing:
+			audioStreamPlayer.stream = BIKE_HIT_LIST.pick_random()
+			audioStreamPlayer.volume_db = 12 + linear_velocity.length()/3
+			audioStreamPlayer.play()
+			break
+
+
+func _on_body_entered(body):
+	if linear_velocity.length() > 1:
+		play_hit()

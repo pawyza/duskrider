@@ -90,6 +90,32 @@ libraries = {
 "": SubResource("AnimationLibrary_uc7x8")
 }
 
+[node name="HitAudioPlayers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.782428, 0, 0)
+
+[node name="HitAudioPlayer" type="AudioStreamPlayer3D" parent="HitAudioPlayers"]
+volume_db = 20.0
+max_db = 6.0
+max_distance = 50.0
+bus = &"Bike"
+
+[node name="HitAudioPlayer2" type="AudioStreamPlayer3D" parent="HitAudioPlayers"]
+volume_db = 20.0
+max_db = 6.0
+max_distance = 50.0
+bus = &"Bike"
+
+[node name="HitAudioPlayer3" type="AudioStreamPlayer3D" parent="HitAudioPlayers"]
+volume_db = 5.0
+max_distance = 50.0
+bus = &"Bike"
+
+[node name="HitAudioPlayer4" type="AudioStreamPlayer3D" parent="HitAudioPlayers"]
+volume_db = 20.0
+max_db = 6.0
+max_distance = 50.0
+bus = &"Bike"
+
 [node name="StopExitAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_33nqs")
 max_distance = 50.0
@@ -367,6 +393,7 @@ text = "[center]PRESS E TO GET OFF[/center]
 wait_time = 0.4
 one_shot = true
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="finished" from="RattleAudio" to="." method="_on_rattle_audio_finished"]
 [connection signal="finished" from="MainHumAudio" to="." method="_on_main_hum_audio_finished"]
 [connection signal="timeout" from="GetOffBike" to="." method="_on_get_off_bike_timeout"]

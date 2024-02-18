@@ -39,7 +39,7 @@ theme_override_constants/margin_bottom = 100
 
 [node name="MainMenu" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainMenu"]
 custom_minimum_size = Vector2(250, 50)
@@ -53,7 +53,7 @@ size_flags_horizontal = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/MainMenu/HBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 text = "[center][b]Dusk Rider[/b]
 Hoverbike Odyssey under Moonlight[/center]
@@ -94,6 +94,31 @@ layout_mode = 2
 theme = SubResource("Theme_f8rfl")
 value = 50.0
 
+[node name="HBoxContainer6" type="HBoxContainer" parent="MarginContainer/MainMenu"]
+custom_minimum_size = Vector2(100, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainMenu/HBoxContainer6"]
+layout_mode = 2
+
+[node name="VolumeText" type="RichTextLabel" parent="MarginContainer/MainMenu/HBoxContainer6/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[center]Mouse sensivity[/center]"
+
+[node name="SpinBox" type="HSlider" parent="MarginContainer/MainMenu/HBoxContainer6/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = SubResource("Theme_f8rfl")
+min_value = 100.0
+max_value = 550.0
+value = 300.0
+
 [node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/MainMenu"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
@@ -110,7 +135,6 @@ size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 9
 bbcode_enabled = true
 text = "[center][b]Controls[/b][/center]
-
 [center]WASD                            Movement[/center]
 [center]E                         Bike interactions[/center]
 [center]SPACE                         Bike breaks[/center]
@@ -130,5 +154,6 @@ bus = &"Ambient"
 
 [connection signal="pressed" from="MarginContainer/MainMenu/HBoxContainer3/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="value_changed" from="MarginContainer/MainMenu/HBoxContainer4/VBoxContainer/SpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="value_changed" from="MarginContainer/MainMenu/HBoxContainer6/VBoxContainer/SpinBox" to="." method="_on_spin_box_value_changed_sensivity"]
 [connection signal="finished" from="DayStartMusic" to="." method="_on_day_start_music_finished"]
 [connection signal="finished" from="DustAmbient" to="." method="_on_dust_ambient_finished"]

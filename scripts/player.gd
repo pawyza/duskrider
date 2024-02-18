@@ -6,7 +6,7 @@ var SPEED = 20.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var mouseSensivity = 1200/4
+var mouseSensivity = EventManager.mouseSensivity
 var mouse_relative_x = 0
 var mouse_relative_y = 0
 
@@ -97,7 +97,6 @@ func _physics_process(delta):
 		var volume_ambient = volume_change + initial_volume_ambient
 		AudioServer.set_bus_volume_db(ambinet_idx, volume_ambient)
 
-
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotation.y -= event.relative.x / mouseSensivity
@@ -137,15 +136,26 @@ func play_step():
 func dying():
 	mouseSensivity *= 4
 	SPEED *= 1/4
+	$DeathTimer.start(8)
 	$AnimationPlayer.play("death")
-
-func _on_animation_player_animation_finished(anim_name):
-	$DeathTimer.start()
+	var volume_bike = volume_change + initial_volume_bike
+	AudioServer.set_bus_volume_db(bike_idx, volume_bike)
+	var volume_ambient = volume_change + initial_volume_ambient
+	AudioServer.set_bus_volume_db(ambinet_idx, volume_ambient)
 
 func _on_death_timer_timeout():
+	AudioServer.set_bus_mute(bike_idx, false)
+	AudioServer.set_bus_mute(ambinet_idx, false)
 	AudioServer.set_bus_volume_db(bike_idx, initial_volume_bike)
 	AudioServer.set_bus_volume_db(ambinet_idx, initial_volume_ambient)
 	get_tree().change_scene_to_file(MENU_SCENE_PATH)
 
 func win():
+	$DeathTimer.start(9)
 	$AnimationPlayer.play("win")
+
+
+
+func _on_animation_player_animation_finished(anim_name):
+	AudioServer.set_bus_mute(bike_idx, true)
+	AudioServer.set_bus_mute(ambinet_idx, true)

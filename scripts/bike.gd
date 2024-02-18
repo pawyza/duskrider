@@ -25,6 +25,14 @@ var is_on_ground = false
 func _ready():
 	player = get_parent().get_node("Player")
 	camera_origin = $CameraPivot/Camera3D.transform
+	$StopExitAudio.bus = "Bike"
+	$RattleAudio.bus = "Bike"
+	$MainHumAudio.bus = "Bike"
+	$AccellerationAudio.bus = "Bike"
+	$HitAudioPlayers/HitAudioPlayer.bus = "Bike"
+	$HitAudioPlayers/HitAudioPlayer2.bus = "Bike"
+	$HitAudioPlayers/HitAudioPlayer3.bus = "Bike"
+	$HitAudioPlayers/HitAudioPlayer4.bus = "Bike"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

@@ -12,6 +12,7 @@ func _ready():
 	$MarginContainer/MainMenu/HBoxContainer4/VBoxContainer/SpinBox.value = (AudioServer.get_bus_volume_db(bus_idx) - initial_volume) * 5 + 50
 	var volume = ($MarginContainer/MainMenu/HBoxContainer4/VBoxContainer/SpinBox.value - 50)/5 + initial_volume
 	AudioServer.set_bus_volume_db(bus_idx, volume)
+	$MarginContainer/MainMenu/HBoxContainer6/VBoxContainer/SpinBox.value = 600 - EventManager.mouseSensivity
 
 # Called every frame. 'delta' is the elapsed time since the previous frame. 
 func _process(delta):
@@ -33,3 +34,6 @@ func _on_day_start_music_finished():
 func _on_dust_ambient_finished():
 	$DustAmbient.play()
 
+
+func _on_spin_box_value_changed_sensivity(value):
+	EventManager.mouseSensivity = 600 - value

@@ -36,18 +36,20 @@ func _on_overheating_check_timer_timeout():
 		
 	if overheated > 10:
 		$DeathSizzle.stream_paused = false
-		$DeathSizzle.volume_db = remap(overheated,10,overheated_limit,-20,20)
+		$DeathSizzle.volume_db = remap(overheated,10,overheated_limit,-20,15)
 	else:
 		$DeathSizzle.stream_paused = true
 	
 	if overheated >= overheated_limit and !dying:
 		dying = true
 		EventManager.emit_signal("death")
+		$AudioTranscript/StartDialogAnimationPlayer.play("DeathDialog")
 
 func _on_sandstorm_body_entered(body):
 	if body.name == "Player" and !dying:
 		dying = true
 		EventManager.emit_signal("death")
+		$AudioTranscript/StartDialogAnimationPlayer.play("DeathDialog")
 
 func _on_death_sound_finished():
 	get_tree().reload_current_scene()
@@ -63,3 +65,4 @@ func _on_death_sizzle_finished():
 
 func _on_area_3d_body_entered(body):
 	EventManager.emit_signal("win")
+	$AudioTranscript/StartDialogAnimationPlayer.play("FinishDialog")

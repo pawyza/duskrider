@@ -36,7 +36,7 @@ func _on_overheating_check_timer_timeout():
 		
 	if overheated > 10:
 		$DeathSizzle.stream_paused = false
-		$DeathSizzle.volume_db = remap(overheated,10,overheated_limit,-20,10)
+		$DeathSizzle.volume_db = remap(overheated,10,overheated_limit,-20,20)
 	else:
 		$DeathSizzle.stream_paused = true
 	

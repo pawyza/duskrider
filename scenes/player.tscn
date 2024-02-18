@@ -194,27 +194,27 @@ one_shot = true
 [node name="StepPlayers" type="Node" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StepPlayers"]
-volume_db = 2.0
+volume_db = 15.0
 bus = &"Ambient"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="StepPlayers"]
-volume_db = 2.0
+volume_db = 15.0
 bus = &"Ambient"
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="StepPlayers"]
-volume_db = 2.0
+volume_db = 15.0
 bus = &"Ambient"
 
 [node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="StepPlayers"]
-volume_db = 2.0
+volume_db = 15.0
 bus = &"Ambient"
 
 [node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="StepPlayers"]
-volume_db = 2.0
+volume_db = 15.0
 bus = &"Ambient"
 
 [node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="StepPlayers"]
-volume_db = 2.0
+volume_db = 15.0
 bus = &"Ambient"
 
 [node name="StepTimer" type="Timer" parent="."]
@@ -228,7 +228,7 @@ libraries = {
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ed13m")
-volume_db = 10.0
+volume_db = 15.0
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 2.0

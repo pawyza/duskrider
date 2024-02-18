@@ -1,18 +1,53 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://d0oxtlvaxcd0e"]
+[gd_resource type="AudioBusLayout" load_steps=7 format=3 uid="uid://d0oxtlvaxcd0e"]
+
+[sub_resource type="AudioEffectEQ10" id="AudioEffectEQ10_hjkfv"]
+resource_name = "EQ10"
+band_db/31_hz = -40.8
+band_db/62_hz = -20.5
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_6vonv"]
+resource_name = "Compressor"
+
+[sub_resource type="AudioEffectEQ10" id="AudioEffectEQ10_dvbir"]
+resource_name = "EQ10"
+band_db/31_hz = -39.5
+band_db/62_hz = -13.0
+
+[sub_resource type="AudioEffectStereoEnhance" id="AudioEffectStereoEnhance_2kps5"]
+resource_name = "StereoEnhance"
+
+[sub_resource type="AudioEffectStereoEnhance" id="AudioEffectStereoEnhance_s35j2"]
+resource_name = "StereoEnhance"
+
+[sub_resource type="AudioEffectEQ10" id="AudioEffectEQ10_qidfg"]
+resource_name = "EQ10"
+band_db/31_hz = -28.0
+band_db/62_hz = -22.4
+band_db/125_hz = -7.0
+band_db/1000_hz = 7.2
+band_db/2000_hz = 5.6
+band_db/4000_hz = 6.4
+band_db/8000_hz = 6.4
 
 [resource]
 bus/0/volume_db = -5.32668
+bus/0/effect/0/effect = SubResource("AudioEffectEQ10_hjkfv")
+bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource("AudioEffectCompressor_6vonv")
+bus/0/effect/1/enabled = true
 bus/1/name = &"Ambient"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
 bus/1/volume_db = 1.45601
 bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectEQ10_dvbir")
+bus/1/effect/0/enabled = true
 bus/2/name = &"Player"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = 0.0
+bus/2/volume_db = 3.2425
 bus/2/send = &"Master"
 bus/3/name = &"UI"
 bus/3/solo = false
@@ -20,15 +55,21 @@ bus/3/mute = false
 bus/3/bypass_fx = false
 bus/3/volume_db = 0.0
 bus/3/send = &"Master"
+bus/3/effect/0/effect = SubResource("AudioEffectStereoEnhance_2kps5")
+bus/3/effect/0/enabled = true
 bus/4/name = &"Music"
 bus/4/solo = false
 bus/4/mute = false
 bus/4/bypass_fx = false
-bus/4/volume_db = 0.0
+bus/4/volume_db = 1.25825
 bus/4/send = &"Master"
+bus/4/effect/0/effect = SubResource("AudioEffectStereoEnhance_s35j2")
+bus/4/effect/0/enabled = true
 bus/5/name = &"Bike"
 bus/5/solo = false
 bus/5/mute = false
 bus/5/bypass_fx = false
 bus/5/volume_db = -4.003
 bus/5/send = &"Master"
+bus/5/effect/0/effect = SubResource("AudioEffectEQ10_qidfg")
+bus/5/effect/0/enabled = true

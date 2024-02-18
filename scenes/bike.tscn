@@ -35,7 +35,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-80.0, -18.0]
+"values": [-80.0, -5.0]
 }
 
 [sub_resource type="Animation" id="Animation_5g7bh"]
@@ -50,7 +50,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-18.0, -80.0]
+"values": [-10.0, -80.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uc7x8"]
@@ -94,30 +94,31 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.782428, 0, 0)
 
 [node name="HitAudioPlayer" type="AudioStreamPlayer3D" parent="HitAudioPlayers"]
-volume_db = 20.0
+volume_db = 45.0
 max_db = 6.0
 max_distance = 50.0
 bus = &"Bike"
 
 [node name="HitAudioPlayer2" type="AudioStreamPlayer3D" parent="HitAudioPlayers"]
-volume_db = 20.0
+volume_db = 45.0
 max_db = 6.0
 max_distance = 50.0
 bus = &"Bike"
 
 [node name="HitAudioPlayer3" type="AudioStreamPlayer3D" parent="HitAudioPlayers"]
-volume_db = 5.0
+volume_db = 45.0
 max_distance = 50.0
 bus = &"Bike"
 
 [node name="HitAudioPlayer4" type="AudioStreamPlayer3D" parent="HitAudioPlayers"]
-volume_db = 20.0
+volume_db = 45.0
 max_db = 6.0
 max_distance = 50.0
 bus = &"Bike"
 
 [node name="StopExitAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_33nqs")
+volume_db = 6.0
 max_distance = 50.0
 bus = &"Bike"
 
@@ -139,6 +140,7 @@ bus = &"Bike"
 
 [node name="AccellerationAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_yyfmj")
+volume_db = 7.0
 max_distance = 50.0
 bus = &"Bike"
 
@@ -170,7 +172,7 @@ mesh = SubResource("QuadMesh_f2dtl")
 skeleton = NodePath("../..")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="CameraPivot/Camera3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="GetOffPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65224, 0.0746566, 1.3)

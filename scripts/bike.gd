@@ -128,7 +128,7 @@ func play_hit():
 	for audioStreamPlayer in $HitAudioPlayers.get_children():
 		if not audioStreamPlayer.playing:
 			audioStreamPlayer.stream = BIKE_HIT_LIST.pick_random()
-			audioStreamPlayer.volume_db = 12 + linear_velocity.length()/3
+			audioStreamPlayer.volume_db = 24 + linear_velocity.length()/3
 			audioStreamPlayer.play()
 			break
 

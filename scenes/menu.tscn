@@ -118,11 +118,13 @@ text = "[center][b]Controls[/b][/center]
 
 [node name="DayStartMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ldxoi")
+volume_db = -10.0
 autoplay = true
 bus = &"Music"
 
 [node name="DustAmbient" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_bvrid")
+volume_db = 3.0
 autoplay = true
 bus = &"Ambient"
 
